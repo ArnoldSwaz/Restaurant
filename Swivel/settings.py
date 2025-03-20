@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Swiv'
+    'Swiv',
+    'django_daraja'
 ]
 
 MIDDLEWARE = [
@@ -75,11 +80,16 @@ WSGI_APPLICATION = 'Swivel.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'mysql.connector.django',
+            'NAME': 'Order',
+            'USER' : 'root',
+            'PASSWORD':'',
+            'HOST': '127.0.0.1',
+            'PORT': '3301',
+       }
     }
-}
+
 
 
 # Password validation
@@ -122,3 +132,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#access environment variables
+MPESA_ENVIRONMENT = os.getenv('MPESA_ENVIRONMENT')
+MPESA_CONSUMER_KEY = os.getenv('MPESA_CONSUMER_KEY')
+MPESA_CONSUMER_SECRET = os.getenv('MPESA_CONSUMER_SECRET')
+MPESA_SHORTCODE = os.getenv('MPESA_SHORTCODE')
+MPESA_EXPRESS_SHORTCODE = os.getenv('MPESA_EXPRESS_SHORTCODE')
+MPESA_SHORTCODE_TYPE = os.getenv('MPESA_SHORTCODE_TYPE')
+MPESA_PASSKEY = os.getenv('MPESA_PASSKEY')
+MPESA_INITIATOR_USERNAME = os.getenv('MPESA_INITIATOR_USERNAME')
+MPESA_CALLBACK_URL = os.getenv('MPESA_CALLBACK_URL')
+MPESA_CONFIRMATION_URL = os.getenv('MPESA_CONFIRMATION_URL')

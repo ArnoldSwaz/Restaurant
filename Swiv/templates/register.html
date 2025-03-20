@@ -1,12 +1,12 @@
-{% load static %}
 {% extends 'Base.html' %}
+{% load static %}
 {% block content %}
 
 <body class="sub_page">
 
   <div class="hero_area">
     <div class="bg-box">
-      <img src="images/hero-bg.jpg" alt="">
+      <img src="{% static 'images/hero-bg.jpg' %}" alt="">
     </div>
     {% include 'nav.html'%}
   </div>
@@ -16,17 +16,19 @@
     <div class="container">
       <div class="heading_container">
         <h2>
-          Book A Table
+          Create an Account
         </h2>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <div class="form_container">
+          <div class="form_container text-center align-items-center justify-content-center">
             <form action="" method="POST">
               {% csrf_token %}
-              {% form.as_p %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-success">Register</button>
             </form>
           </div>
+          <p>Already have an account? <span><a href="{% url 'login' %}">Log In</a></span></p>
         </div>
         <div class="col-md-6">
           <div class="map_container ">
@@ -42,4 +44,3 @@
 {% endblock %}
 
 </body>
-

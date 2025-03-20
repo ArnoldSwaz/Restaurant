@@ -1,0 +1,50 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block content %}
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="{% static 'images/hero-bg.jpg' %}" alt="">
+    </div>
+    {% include 'nav.html'%}
+  </div>
+
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Payment
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container text-center align-items-center justify-content-center">
+            <h2>Payment Details</h2>
+            <p>Item: {{ item_name }}</p>
+            <p>Price: Ksh{{ item_price }}</p>
+            <form action="{% url 'lipa' %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="item_name" value="{{ item_name }}">
+              <input type="hidden" name="Amount" value="{{ item_price }}">
+              <label for="Phone">Enter Phone Number</label>
+              <input type="number" name="Phone" id="Phone">
+    
+              <button type="submit" class="btn btn-success">Pay Here</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="map_container ">
+            <div id="googleMap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end book section -->
+
+{% include 'footer.html' %}
+{% endblock %}
